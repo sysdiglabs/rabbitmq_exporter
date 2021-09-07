@@ -1,7 +1,14 @@
 version: 2
+registries:
+  docker-registry-quay-io:
+    type: docker-registry
+    url: https://quay.io
+    username: "${{secrets.DEPENDABOT_USER}}"
+    password: "${{secrets.DEPENDABOT_PASS}}"
 updates:
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
+- package-ecosystem: "docker"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  registries:
+  - docker-registry-quay-io
